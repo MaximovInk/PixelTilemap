@@ -3,7 +3,7 @@
 
 Pixel tilemap - a tool for creating prototypes of maps or just for creating endless pixel maps.
 
-About it:
+# About it:
 - Endless map
 - Has tools for creating custom palettes
 - User friendly interface
@@ -15,7 +15,11 @@ About it:
 - Auto crop
 - Collider Generation
 
-Control:
+# Control:
 - RMB - put a pixel
 - RMB + SHIFT - erase pixel
 - RMB + CONTROL - copy color
+
+# Screenshots:
+![Title](https://i.imgur.com/5o1pV7e.png)
+![Title](https://i.imgur.com/jie3rL8.png)
