@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 namespace MaxivmoInk.PixelTilemap
 {
@@ -42,11 +41,6 @@ namespace MaxivmoInk.PixelTilemap
             UpdateColliderActive();
             Fill(Color.clear);
         }
-  
-       /* private bool ContainsInBlackList(Color color)
-        {
-            return ptTilemap.ColorsBlackList.Contains(color);
-        }*/
 
         #region Renderer
 

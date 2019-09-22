@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,7 +10,9 @@ namespace MaxivmoInk.PixelTilemap
         public const int CHUNK_SIZE_X = 32;
         //Changing it breaks the existing maps!
         public const int CHUNK_SIZE_Y = 32;
-
+        /// <summary>
+        /// Auto remove unused chunks
+        /// </summary>
         public bool AutoTrim = true;
 
         public Vector2 CellSize { get { return cell_size; } set { cell_size = value; UpdateSizeOfChunks(); } }
@@ -33,7 +34,9 @@ namespace MaxivmoInk.PixelTilemap
         public PhysicsMaterial2D PhysicsMaterial2D { get { return physMaterial; }set { physMaterial = value; UpdateCollidersProperties(); } }
 
         public bool ColliderIsTrigger { get { return isTrigger; } set { isTrigger = value; UpdateCollidersProperties(); } }
-
+        /// <summary>
+        /// Palette, for update use UpdatePalette()
+        /// </summary>
         public Color[] Palette { get { return palette; } }
 
         [SerializeField]
@@ -62,7 +65,12 @@ namespace MaxivmoInk.PixelTilemap
         private List<ptChunk> chunks = new List<ptChunk>();
         [SerializeField]
         private Color[] palette = new Color[0];
-
+        /// <summary>
+        /// Set a color in the given coordinates
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="color">Color</param>
         public void SetPixel(int x, int y, Color color)
         {
             var ch = GetOrCreateChunk(x, y);
@@ -70,7 +78,12 @@ namespace MaxivmoInk.PixelTilemap
                 return;
             ch.SetPixel(x, y, color);
         }
-
+        /// <summary>
+        /// Get color in given coordinates
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <returns>Color</returns>
         public Color GetPixel(int x, int y)
         {
             var ch = GetOrCreateChunk(x, y);
@@ -149,7 +162,11 @@ namespace MaxivmoInk.PixelTilemap
                 chunks[i].transform.localPosition = new Vector3(chunks[i].x*CHUNK_SIZE_X*cell_size.x,chunks[i].y*CHUNK_SIZE_Y*cell_size.y);
             }
         }
-
+        
+        /// <summary>
+        /// Clear all map to given color
+        /// </summary>
+        /// <param name="color"></param>
         public void Fill(Color color)
         {
             for (int i = 0; i < chunks.Count; i++)
@@ -157,12 +174,16 @@ namespace MaxivmoInk.PixelTilemap
                 chunks[i].Fill(color);
             }
         }
-
+        /// <summary>
+        /// Clear all map to transparent color
+        /// </summary>
         public void Clear()
         {
             Fill(Color.clear);
         }
-
+        /// <summary>
+        /// Update palette property
+        /// </summary>
         public void UpdatePalette()
         {
             HashSet<Color> newPallete = new HashSet<Color>();
@@ -174,7 +195,9 @@ namespace MaxivmoInk.PixelTilemap
 
             palette = newPallete.ToArray();
         }
-
+        /// <summary>
+        /// Update map
+        /// </summary>
         public void UpdateMap()
         {
             if (AutoTrim)
@@ -186,7 +209,9 @@ namespace MaxivmoInk.PixelTilemap
                     chunks[i].UpdateMesh();
             }
         }
-
+        /// <summary>
+        /// Regenerate collider
+        /// </summary>
         public void RegenerateCollider()
         {
             for (int i = 0; i < chunks.Count; i++)
@@ -195,7 +220,9 @@ namespace MaxivmoInk.PixelTilemap
                     chunks[i].GenerateCollider();
             }
         }
-
+        /// <summary>
+        /// Trim a map
+        /// </summary>
         public void Trim()
         {
             for (int i = 0; i < chunks.Count; i++)
