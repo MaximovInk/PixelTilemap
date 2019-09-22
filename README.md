@@ -16,9 +16,9 @@ Pixel tilemap - a tool for creating prototypes of maps or just for creating endl
 - Collider Generation
 
 # Control:
-- RMB - put a pixel
-- RMB + SHIFT - erase pixel
-- RMB + CONTROL - copy color
+- LMB - put a pixel
+- LMB + SHIFT - erase pixel
+- LMB + CONTROL - copy color
 
 # Screenshots:
 ![Title](https://i.imgur.com/5o1pV7e.png)
